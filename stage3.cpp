@@ -1,9 +1,10 @@
 #include"helper/helper.hpp"
 using namespace std;
 
-int main(){
+int main(int argc, char* argv[]) { 
+    string testFolder= argv[1];
     json j;
-    ifstream("data.json")>> j;
+    ifstream(testFolder+"/data.json")>> j;
     auto projection = j.at("projection"); // throws if key missing
     double fovY=projection.at("fovY"), aspectRatio=projection.at("aspectRatio"), near=projection.at("near"), far=projection.at("far");
   
@@ -48,8 +49,8 @@ int main(){
     projMatrix.m[3][3] = 0;
 
     // Open stage2.txt for reading and stage3.txt for writing
-    ifstream stage2File("output/stage2.txt");
-    ofstream stage3File("output/stage3.txt");
+    ifstream stage2File(testFolder+"/output/stage2.txt");
+    ofstream stage3File(testFolder+"/output/stage3.txt");
     if(!stage2File.is_open() || !stage3File.is_open()) {
         cerr << "Error: Could not open stage2.txt or stage3.txt file." << endl;
         return EXIT_FAILURE;

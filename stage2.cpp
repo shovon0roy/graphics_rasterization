@@ -68,9 +68,10 @@ Matrix4 computeViewMatrix(const Vector4& eye, const Vector4& look, const Vector4
 
 
 
-int main() { 
+int main(int argc, char* argv[]) { 
+    string testFolder= argv[1];
     json j;
-    ifstream("data.json")>> j;
+    ifstream(testFolder+"/data.json")>> j;
     auto cam          = j.at("camera");           // throws if key missing
     auto eyeArr       = cam.at("eye");            // [x,y,z]
     auto lookArr      = cam.at("look");
@@ -89,8 +90,8 @@ int main() {
     }
 
     // Open stage1.txt for reading and stage2.txt for writing
-    ifstream stage1File("output/stage1.txt");
-    ofstream stage2File("output/stage2.txt");
+    ifstream stage1File(testFolder+"/output/stage1.txt");
+    ofstream stage2File(testFolder+"/output/stage2.txt");
     if(!stage1File.is_open() || !stage2File.is_open()) {
         cerr << "Error: Could not open stage1.txt or stage2.txt file." << endl;
         return EXIT_FAILURE;

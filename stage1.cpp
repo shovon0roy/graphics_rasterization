@@ -9,14 +9,15 @@ int main(int argc, char *argv[]) {
     cin.tie(NULL);
 
     // Open input scene file and output file for Stage1
-    string inputFile=argv[1];
+    string inputFile=argv[2];
+    string testFolder=argv[1];
     cout<<inputFile<<endl;
     ifstream input(inputFile);
     if (!input.is_open()) {
         cerr << "Error: Could not open input file \"scene.txt\"." << endl;
         return EXIT_FAILURE;
     }
-    ofstream output("output/stage1.txt");
+    ofstream output(testFolder+"/output/stage1.txt");
     if (!output.is_open()) {
         cerr << "Error: Could not open output file \"stage1.txt\"." << endl;
         return EXIT_FAILURE;
@@ -63,7 +64,7 @@ j["projection"] = {
     { "near",        nearPlane   },
     { "far",         farPlane    }
 };
-std::ofstream jsonOut("data.json");
+std::ofstream jsonOut(testFolder+"/data.json");
 if (!jsonOut.is_open()) {
     std::cerr << "Error: Could not open stage1.json for writing\n";
     return EXIT_FAILURE;
