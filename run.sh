@@ -16,13 +16,13 @@ mkdir -p "$EXE_DIR"
 # ---------------------------------------------------------------------------
 # 1. Build all four stages
 # ---------------------------------------------------------------------------
-# for S in "${STAGES[@]}"; do
-#   SRC="$SRC_DIR/$S.cpp"
-#   EXE="$EXE_DIR/$S.exe"
-#   echo
-#   echo "Compiling $SRC → $EXE"
-#   "$CXX" $CXXFLAGS "$SRC" -o "$EXE"
-# done
+for S in "${STAGES[@]}"; do
+  SRC="$SRC_DIR/$S.cpp"
+  EXE="$EXE_DIR/$S.exe"
+  echo
+  echo "Compiling $SRC → $EXE"
+  "$CXX" $CXXFLAGS "$SRC" -o "$EXE"
+done
 
 # ---------------------------------------------------------------------------
 # 2. Run pipeline for every test-case directory supplied
